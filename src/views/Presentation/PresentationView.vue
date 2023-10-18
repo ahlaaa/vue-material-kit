@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
+import { useAppStore } from '@/stores'
+
 //example components
 import NavbarDefault from "../..//examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "../../examples/footers/FooterDefault.vue";
@@ -29,6 +31,7 @@ import logoAngular from "@/assets/img/logos/angular.jpg";
 import logoReact from "@/assets/img/logos/react.jpg";
 import logoSketch from "@/assets/img/logos/sketch.jpg";
 
+const store = useAppStore();
 //hooks
 const body = document.getElementsByTagName("body")[0];
 onMounted(() => {
@@ -38,6 +41,10 @@ onMounted(() => {
 onUnmounted(() => {
   body.classList.remove("presentation-page");
   body.classList.remove("bg-gray-200");
+  // 更新store
+  store.login({a: 111})
+  console.log({isLoggedIn: store.isLoggedIn,
+      user: store.user})
 });
 </script>
 
